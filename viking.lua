@@ -13537,6 +13537,43 @@ Redis:set(viking.."Redis:Id:Group"..msg_chat_id,band)
 return LuaTele.sendText(msg_chat_id, msg_id, '✵ تم تغير الايدي ارسل ايدي لرؤيت ',"md",true)  
 end
 
+if text == '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━' then
+Redis:sadd(viking..'Num:User:Pv',msg.sender.user_id)  
+if not msg.DevelopersQ then
+if not Redis:get(viking.."Start:Bot") then
+local CmdStart = 'اهلا بك عزيزي..🌚💞\nانت الان في قسم المطورين'
+local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
+data = {
+{
+{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
+},
+{
+{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
+},
+{
+{text = '• القائمه الرئيسيه •',type = 'text'},
+},
+}
+}
+return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
+else
+local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
+data = {
+{{
+{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
+},
+{
+{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
+},
+{
+{text = '• القائمه الرئيسيه •',type = 'text'},
+},
+}
+}
+return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(viking.."Start:Bot"),"md",false, false, false, false, reply_markup)
+end
+end
+else
 
 end -- GroupBot
 if chat_type(msg.chat_id) == "UserBot" then 
@@ -13794,43 +13831,6 @@ data = {
 }
 return LuaTele.sendText(msg_chat_id,msg_id,' *اهلا بك عزيزي المطور الاساسي* اوامر اضف', 'md', false, false, false, false, reply_markup)
 end
-if text == '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━' then
-Redis:sadd(viking..'Num:User:Pv',msg.sender.user_id)  
-if not msg.DevelopersQ then
-if not Redis:get(viking.."Start:Bot") then
-local CmdStart = '*اهلا بك عزيزي..🌚💞\nانت الان في قسم المطورين*'
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
-data = {
-{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
-},
-{
-{text = '• القائمه الرئيسيه •',type = 'text'},
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
-else
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
-data = {
-{{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
-},
-{
-{text = '• القائمه الرئيسيه •',type = 'text'},
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(viking.."Start:Bot"),"md",false, false, false, false, reply_markup)
-end
-end
-else
 if text == 'السيرفر' then
 if not msg.ControllerBot then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*◉ هاذا الامر يخص⦗ '..Controller_Num(1)..' ⦘* ',"md",true)  
