@@ -13641,7 +13641,6 @@ data = {
 }
 return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(viking.."Start:Bot"),"md",false, false, false, false, reply_markup)
 end
-end
 else
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
