@@ -13541,7 +13541,7 @@ if text == '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━' the
 Redis:sadd(viking..'Num:User:Pv',msg.sender.user_id)  
 if not msg.DevelopersQ then
 if not Redis:get(viking.."Start:Bot") then
-local CmdStart = 'اهلا بك عزيزي..🌚💞\nانت الان في قسم المطورين'
+local CmdStart = '*اهلا بك عزيزي..🌚💞\nانت الان في قسم المطورين*'
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
 {
@@ -13558,7 +13558,6 @@ data = {
 return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
 end
 end
-else
 
 end -- GroupBot
 if chat_type(msg.chat_id) == "UserBot" then 
