@@ -13556,21 +13556,6 @@ data = {
 }
 }
 return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
-else
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
-data = {
-{{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
-},
-{
-{text = '• القائمه الرئيسيه •',type = 'text'},
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(viking.."Start:Bot"),"md",false, false, false, false, reply_markup)
 end
 end
 else
