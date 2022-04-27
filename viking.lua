@@ -13795,8 +13795,10 @@ data = {
 return LuaTele.sendText(msg_chat_id,msg_id,' *اهلا بك عزيزي المطور الاساسي* اوامر اضف', 'md', false, false, false, false, reply_markup)
 end
 if text == '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━' then
-if not msg.ControllerBot then 
-end
+Redis:sadd(viking..'Num:User:Pv',msg.sender.user_id)  
+if not msg.DevelopersQ then
+if not Redis:get(viking.."Start:Bot") then
+local CmdStart = '*اهلا بك عزيزي..🌚💞\nانت الان في قسم المطورين*'
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
 {
@@ -13810,56 +13812,25 @@ data = {
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id,'اهلا بك عزيزي..🌚💞\nانت الان في قسم المطورين', 'md', false, false, false, false, reply_markup)
-if text == '↜ الالعاب ↝' then
-if not msg.ControllerBot then 
-end
+return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
+else
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
-{
+{{
 {text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
 },
 {
-{text = 'تويت',type = 'text'},{text = 'حروف', type = 'text'},
-},
-{
-{text = 'كتبات',type = 'text'},{text = 'نكته', type = 'text'},
-},
-{
-{text = 'لو خيروك',type = 'text'},{text = 'اذكار', type = 'text'},
+{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
 },
 {
 {text = '• القائمه الرئيسيه •',type = 'text'},
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id,'اهلا بك عزيزي..🌚💞\nانت الان في قسم الالعاب', 'md', false, false, false, false, reply_markup)
-elseif text == '• القائمه الرئيسيه •' then
-if not msg.ControllerBot then 
+return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(viking.."Start:Bot"),"md",false, false, false, false, reply_markup)
 end
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
-data = {
-{
-{text = '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━',type = 'text'},
-},
-{
-{text = '↜ الالعاب ↝',type = 'text'},{text = '↜ اسعار السورسات ↝', type = 'text'},
-},
-{
-{text = '↜ اسعار التنصيب  ↝',type = 'text'},{text = '↜ قسم الاستوريهات  ↝', type = 'text'},
-},
-{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = '↜ قنوات السورس  ↝',type = 'text'},
-},
-{
-{text = '↜  بوتات السورس  ↝',type = 'text'},
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,' *اهلا بك عزيزي المطور الاساسي* ', 'md', false, false, false, false, reply_markup)
+end
+else
 if text == 'السيرفر' then
 if not msg.ControllerBot then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*◉ هاذا الامر يخص⦗ '..Controller_Num(1)..' ⦘* ',"md",true)  
