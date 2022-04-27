@@ -13575,67 +13575,67 @@ LuaTele.sendText(msg_chat_id,msg_id, "* ◉ تم تحديث الملفات *","m
 dofile('viking.lua')  
 end
 if text == '/start' then
+local photo = LuaTele.getUserProfilePhotos(viking)
+local ban = LuaTele.getUser(viking)
+local bain = LuaTele.getUser(msg.sender.user_id)
 Redis:sadd(viking..'Num:User:Pv',msg.sender.user_id)  
-if not msg.DevelopersQ then
+if not msg.ControllerBot then
 if not Redis:get(viking.."Start:Bot") then
-local CmdStart = '*ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n🎤╖ أهلآ بك عزيزي أنا بوت '..(Redis:get(viking.."Name:Bot") or "ريبورتر")..
-'\n ⚙️╢ وظيفتي حماية المجموعات'..
-'\n ✅╢ لتفعيل البوت عليك اتباع مايلي '..
-'\n 🔘╢ أضِف البوت إلى مجموعتك'..
-'\n ⚡️╢ ارفعهُ » مشرف'..
-'\n ⬆️╢ سيتم ترقيتك مالك في البوت'..
-'\n 🎌╜ ارسل كلمة تفعيل ليتم تفعيل المجموعه'..
-'\n ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ'..
-'\n ✵ مطور البوت -›〘 @'..UserSudo..' 〙*'
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
-data = {
-{
-{text = '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━',type = 'text'},
-},
-{
-{text = '↜ الالعاب ↝',type = 'text'},{text = '↜ اسعار السورسات ↝', type = 'text'},
-},
-{
-{text = '↜ اسعار التنصيب  ↝',type = 'text'},{text = '↜ قسم الاستوريهات  ↝', type = 'text'},
-},
-{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = '↜ قنوات السورس  ↝',type = 'text'},
-},
-{
-{text = '↜  بوتات السورس  ↝',type = 'text'},
-},
-{
-{text = 'أضغط لاضافه ألبوت لمجموعتك 𖠪', url = 't.me/'..UserBot..'?startgroup=new'}, 
-},
-}
-}
-return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
+if bain.username then
+banusername = '[@'..bain.username..']'
 else
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
+banusername = 'لا يوجد'
+end
+if bain.first_name then
+baniusername = '*['..bain.first_name..'](tg://user?id='..bain.id..')*'
+else
+baniusername = 'لا يوجد'
+end
+local CmdStart = '*\n 🤖 ╔•ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ  ʙᴏᴛ '..(Redis:get(viking.."viking:Name:Bot") or "فايكينج")..
+'\n 👻╠•ᴛʜᴇ ʙᴇѕᴛ ʙᴏᴛ ᴛᴇʟᴇɢʀᴀᴍ'..
+'\n ♻️╠•𝘴ꪮꪊ𝘳ᥴꫀ ꪜ𝓲𝘬𝓲ꪀᧁ ᴛʜɪѕ ɢᴏᴏᴅ ...'..
+'\n 👁╠•ᴘʟᴀʏ ʙᴏᴛ ʀᴏᴏʟ ᴀᴅᴍɪɴ'..
+'\n 🦸🏻‍♂️╚•ᴅᴇᴠ ʙᴏᴛ = 𓄼 @'..UserSudo..' 𓄹*'
+if photo.total_count > 0 then
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '𓄼•عـسـكري•𓄹', url = "https://t.me/ALSKARE3"},{text = '𓄼•سـيـزر•𓄹', url = "https://t.me/ttccss"}
+},
+{
+{text = '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━', type = "text"}
+},
+{
+{text = '𓄼•عـايـز بـوت•𓄹', url = "https://t.me/AsaliyaEgypt"},{text = '𓄼•تـواصـل الـسـورس•𓄹', url = "https://t.me/AsaliyaEgypt_bot"}
+},
+{
+{text = '𓄼• قـنـاه الـسـورس •𓄹', url = 't.me/V_I_K_I_N_G_1'}, 
+},
+{
+{text = 'اضف البوت لمجموعتك ✅', url = 't.me/'..UserBot..'?startgroup=new'}, 
+},
+}
+local msgg = msg_id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(CmdStart).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+LuaTele.sendText(Sudo_Id,0,'*\n دخل شخص إلى البوت \n༺┉┉┉⊶﴾𓄼•𝘴ꪮꪊ𝘳ᥴꫀ ꪜ𝓲𝘬𝓲ꪀᧁ•𓄹﴿⊷┉┉┉༻\n اسمه :- '..baniusername..' \n ايديه :-  : '..msg.sender.user_id..'\n - معرفة '..banusername..' \n*',"md")
+else
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
 data = {
 {
-{text = '━┅┅┄⟞⟦ مطورين السورس ⟧⟝┄┉┉━',type = 'text'},
+{text = '𓄼•عـسـكري•𓄹', url = "https://t.me/ALSKARE3"},{text = '𓄼•سـيـزر•𓄹', url = "https://t.me/ttccss"}
 },
 {
-{text = '↜ الالعاب ↝',type = 'text'},{text = '↜ اسعار السورسات ↝', type = 'text'},
+{text = '𓄼•عـايز سـورس•𓄹', type = "text"}
 },
 {
-{text = '↜ اسعار التنصيب  ↝',type = 'text'},{text = '↜ قسم الاستوريهات  ↝', type = 'text'},
+{text = '𓄼•عـايـز بـوت•𓄹', url = "https://t.me/AsaliyaEgypt"},{text = '𓄼•تـواصـل الـسـورس•𓄹', url = "https://t.me/AsaliyaEgypt_bot"}
 },
 {
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
+{text = '𓄼• قـنـاه الـسـورس •𓄹', url = 't.me/V_I_K_I_N_G_1'}, 
 },
 {
-{text = '↜ قنوات السورس  ↝',type = 'text'},
-},
-{
-{text = '↜  بوتات السورس  ↝',type = 'text'},
-},
-{
-{text = 'أضغط لاضافه ألبوت لمجموعتك 𖠪', url = 't.me/'..UserBot..'?startgroup=new'}, 
+{text = 'اضف البوت لمجموعتك ✅', url = 't.me/'..UserBot..'?startgroup=new'}, 
 },
 }
 }
